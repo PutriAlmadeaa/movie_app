@@ -1,45 +1,58 @@
-import React from 'react'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { Feather } from '@expo/vector-icons'
-import Home from '../screens/Home'
-import Search from '../screens/Search'
-import Favorite from '../screens/Favorite'
+// navigations/BottomTabNavigation.tsx
+import React from 'react';
+import { Image } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeStackNavigation from './HomeStackNavigation';
+import Favorite from '../screens/Favorite';
+import Search from '../screens/Search';
 
-const Tab = createBottomTabNavigator()
 
-const BottomTabNavigator = (): JSX.Element => (
-  <Tab.Navigator>
-    <Tab.Screen
-      name="Home"
-      component={Home}
-      options={{
-        tabBarIcon: ({ color }) => (
-          <Feather name="home" size={28} color={color} />
-        ),
-        headerShown: false,
-      }}
-    />
-    <Tab.Screen
-      name="Search"
-      component={Search}
-      options={{
-        tabBarIcon: ({ color }) => (
-          <Feather name="search" size={28} color={color} />
-        ),
-        headerShown: false,
-      }}
-    />
-    <Tab.Screen
-      name="Favorite"
-      component={Favorite}
-      options={{
-        tabBarIcon: ({ color }) => (
-          <Feather name="heart" size={28} color={color} />
-        ),
-        headerShown: false,
-      }}
-    />
-  </Tab.Navigator>
-)
+const Tab = createBottomTabNavigator();
 
-export default BottomTabNavigator
+const BottomTabNavigation = () => {
+    return (
+      <Tab.Navigator>
+        <Tab.Screen
+          name="HomeStack"
+          component={HomeStackNavigation}
+          options={{
+            tabBarLabel: 'Home',
+            tabBarIcon: ({ color, size }) => (
+              <Image
+                source={require('../../assets/bottomTabIcons/home.png')}
+                style={{ tintColor: color, width: size, height: size }}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Favorite"
+          component={Favorite}
+          options={{
+            tabBarLabel: 'Favorite',
+            tabBarIcon: ({ color, size }) => (
+              <Image
+                source={require('../../assets/bottomTabIcons/love.png')}
+                style={{ tintColor: color, width: size, height: size }}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Search"
+          component={Search}
+          options={{
+            tabBarLabel: 'Search',
+            tabBarIcon: ({ color, size }) => (
+              <Image
+                source={require('../../assets/bottomTabIcons/search.png')}
+                style={{ tintColor: color, width: size, height: size }}
+              />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    );
+  };
+  
+  export default BottomTabNavigation;
