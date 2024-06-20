@@ -1,10 +1,21 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
-export default function Home(): JSX.Element {
+const Home = ({ navigation }: any) => {
   return (
-    <View>
-      <Text>Home</Text>
+    <View style={styles.container}>
+      <Text>Home Screen</Text>
+      <Button title="Go to Movie Detail" onPress={() => navigation.navigate('MovieDetail')} />
     </View>
-  )
-}
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
+export default Home;
