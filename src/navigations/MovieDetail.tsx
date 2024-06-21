@@ -1,25 +1,43 @@
 // screens/MovieDetail.tsx
-import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import React from 'react'
+import { View, Text, Button } from 'react-native'
+import { API_URL, API_ACCESS_TOKEN } from '@env'
 
-const MovieDetail = ({ navigation }: any) => {
+const MovieDetail = ({ navigation }: any): any => {
+  const fetchData = (): void => {
+    if (API_URL == null || API_ACCESS_TOKEN.length == null) {
+      throw new Error('ENV not found')
+    }
+
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${API_ACCESS_TOKEN}`,
+      },
+    }
+
+    fetch(API_URL, options)
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Movie Detail Screen</Text>
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Movie Detail Page</Text>
+      <Button
+        title="Fetch Data"
+        onPress={() => {
+          fetchData()
+        }}
+      />
     </View>
-  );
-};
+  )
+}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,           // Memungkinkan View untuk mengisi seluruh layar
-    justifyContent: 'center',  // Mengatur konten secara vertikal ke tengah
-    alignItems: 'center',      // Mengatur konten secara horizontal ke tengah
-  },
-  text: {
-    marginBottom: 20,  // Jarak antara teks dan tombol
-  },
-});
-
-export default MovieDetail;
+export default MovieDetail
