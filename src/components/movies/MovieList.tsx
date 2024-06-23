@@ -42,15 +42,11 @@ const MovieList = ({ title, path, coverType }: MovieListProps): JSX.Element => {
       })
   }
 
-  console.log(movies)
-
   return (
     <View>
       <View style={styles.header}>
-        <View style={styles.purpleLabel}></View>
         <Text style={styles.title}>{title}</Text>
       </View>
-      {/* Tambahkan code di bawah ini */}
       <FlatList
         style={{
           ...styles.movieList,
@@ -74,17 +70,10 @@ const MovieList = ({ title, path, coverType }: MovieListProps): JSX.Element => {
 
 const styles = StyleSheet.create({
   header: {
-    marginLeft: 6,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  purpleLabel: {
-    width: 20,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#8978A4',
-    marginRight: 12,
+    justifyContent: 'center'
   },
   title: {
     fontSize: 20,
