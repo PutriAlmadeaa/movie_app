@@ -1,10 +1,9 @@
-// navigations/BottomTabNavigation.tsx
 import React from 'react'
 import { Image } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import HomeStackNavigation from './HomeStackNavigation'
-import Favorite from '../screens/Favorite'
-import Search from '../screens/Search'
+import SearchStackNavigation from './SearchStackNavigation'
+import FavoriteStackNavigation from './FavoriteStackNavigation'
 
 const Tab = createBottomTabNavigator()
 
@@ -19,39 +18,57 @@ const BottomTabNavigation = () => {
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
             <Image
-              source={require('../../assets/bottomTabIcons/home.png')}
+              source={require('../../../assets/bottomTabIcons/home.png')}
               style={{ tintColor: color, width: size, height: size }}
             />
           ),
         }}
+        listeners={({ navigation }) => ({
+          tabPress: (e) => {
+            e.preventDefault();
+            navigation.navigate('HomeStack', { screen: 'Home' });
+          },
+        })}
       />
       <Tab.Screen
-        name="Favorite"
-        component={Favorite}
+        name="FavoriteStack"
+        component={FavoriteStackNavigation}
         options={{
           headerShown: false,
           tabBarLabel: 'Favorite',
           tabBarIcon: ({ color, size }) => (
             <Image
-              source={require('../../assets/bottomTabIcons/love.png')}
+              source={require('../../../assets/bottomTabIcons/love.png')}
               style={{ tintColor: color, width: size, height: size }}
             />
           ),
         }}
+        listeners={({ navigation }) => ({
+          tabPress: (e) => {
+            e.preventDefault();
+            navigation.navigate('FavoriteStack', { screen: 'Favorite' });
+          },
+        })}
       />
       <Tab.Screen
-        name="Search"
-        component={Search}
+        name="SearchStack"
+        component={SearchStackNavigation}
         options={{
           headerShown: false,
           tabBarLabel: 'Search',
           tabBarIcon: ({ color, size }) => (
             <Image
-              source={require('../../assets/bottomTabIcons/search.png')}
+              source={require('../../../assets/bottomTabIcons/search.png')}
               style={{ tintColor: color, width: size, height: size }}
             />
           ),
         }}
+        listeners={({ navigation }) => ({
+          tabPress: (e) => {
+            e.preventDefault();
+            navigation.navigate('SearchStack', { screen: 'Search' });
+          },
+        })}
       />
     </Tab.Navigator>
   )
