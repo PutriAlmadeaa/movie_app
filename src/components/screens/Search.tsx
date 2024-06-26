@@ -39,6 +39,7 @@ const Search = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
+    paddingTop: 40
   },
   topBarContainer: {
     display: 'flex',
